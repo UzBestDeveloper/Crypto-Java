@@ -9,5 +9,14 @@
         android:id="@+id/cryptoListFragment"
         android:name="com.developer.crypto.ui.fragments.CryptoListFragment"
         android:label="fragment_crypto_list"
-        tools:layout="@layout/fragment_crypto_list" />
+        tools:layout="@layout/fragment_crypto_list" >
+        <action
+            android:id="@+id/action_cryptoListFragment_to_assesDetailsFragment"
+            app:destination="@id/assetDetailsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/assetDetailsFragment"
+        android:name="com.developer.crypto.ui.fragments.AssetDetailsFragment"
+        android:label="fragment_asset_details"
+        tools:layout="@layout/fragment_asset_details" />
 </navigation>

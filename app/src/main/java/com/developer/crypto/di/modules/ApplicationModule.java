@@ -10,6 +10,7 @@ import com.developer.crypto.di.qualifiers.ApplicationContext;
 import com.developer.crypto.di.scopes.ActivityScope;
 import com.developer.crypto.di.scopes.FragmentScope;
 import com.developer.crypto.ui.activities.MainActivity;
+import com.developer.crypto.ui.fragments.AssetDetailsFragment;
 import com.developer.crypto.ui.fragments.CryptoListFragment;
 
 import javax.inject.Singleton;
@@ -41,5 +42,9 @@ public abstract class ApplicationModule {
     @FragmentScope
     @ContributesAndroidInjector(modules = FragmentModule.class)
     abstract CryptoListFragment cryptoListFragmentInjector();
+
+    @FragmentScope
+    @ContributesAndroidInjector(modules = FragmentModule.class)
+    abstract AssetDetailsFragment assetDetailsFragmentInjector();
 
 }

@@ -3,6 +3,7 @@ package com.developer.crypto.di.components;
 import com.developer.crypto.App;
 import com.developer.crypto.di.modules.ApplicationModule;
 import com.developer.crypto.mvp.presenters.activities.MainActivityPresenter;
+import com.developer.crypto.mvp.presenters.fragments.AssetDetailsFragmentPresenter;
 import com.developer.crypto.mvp.presenters.fragments.CryptoListFragmentPresenter;
 
 import javax.inject.Singleton;
@@ -21,6 +22,8 @@ public interface ApplicationComponent {
 
 
     void inject(CryptoListFragmentPresenter cryptoListFragmentPresenter);
+
+    void inject(AssetDetailsFragmentPresenter assetDetailsFragmentPresenter);
 
     @Component.Builder
     interface Builder {

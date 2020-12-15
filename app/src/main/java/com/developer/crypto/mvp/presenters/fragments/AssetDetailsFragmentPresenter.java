@@ -2,11 +2,9 @@ package com.developer.crypto.mvp.presenters.fragments;
 
 import com.developer.crypto.App;
 import com.developer.crypto.connect.ApiManager;
-import com.developer.crypto.connect.models.AssetObject;
+import com.developer.crypto.connect.TimeSeriesResponse;
 import com.developer.crypto.connect.response.ResponseBody;
-import com.developer.crypto.mvp.views.fragments.CryptoListFragmentView;
-
-import java.util.List;
+import com.developer.crypto.mvp.views.fragments.AssetDetailsFragmentView;
 
 import javax.inject.Inject;
 
@@ -18,14 +16,14 @@ import moxy.MvpPresenter;
 import retrofit2.Response;
 
 @InjectViewState
-public class CryptoListFragmentPresenter extends MvpPresenter<CryptoListFragmentView> {
+public class AssetDetailsFragmentPresenter extends MvpPresenter<AssetDetailsFragmentView> {
 
     @Inject
     ApiManager mApiManager;
 
-    private CryptoListFragmentView mView;
+    private AssetDetailsFragmentView mView;
 
-    public CryptoListFragmentPresenter() {
+    public AssetDetailsFragmentPresenter() {
         super();
         injectData();
         mView = getViewState();
@@ -35,21 +33,20 @@ public class CryptoListFragmentPresenter extends MvpPresenter<CryptoListFragment
         App.getComponent().inject(this);
     }
 
+    public void GET_TIME_SERIES(String assetKey,String end, String beg) {
 
-    public void GET_ASSETS(long page) {
-        mApiManager.getAssets(page)
-                .subscribe(new Observer<Response<ResponseBody<List<AssetObject>>>>() {
+        mApiManager.getTimeSeries(assetKey,end,beg)
+                .subscribe(new Observer<Response<ResponseBody<TimeSeriesResponse>>>() {
                     @Override
                     public void onSubscribe(@NonNull Disposable d) {
 
                     }
 
                     @Override
-                    public void onNext(@NonNull Response<ResponseBody<List<AssetObject>>> response) {
-                        if (null != response.body() && null != response.body().getData() && response.body().getData().size() > 0) {
-                            mView.initAssets(response.body().getData());
+                    public void onNext(@NonNull Response<ResponseBody<TimeSeriesResponse>> response) {
+                        if (response.isSuccessful() && null != response.body() && null != response.body().getData().getValues()) {
+                            mView.initTimeSeries(response.body().getData());
                         }
-                        mView.stopProgress();
                     }
 
                     @Override
