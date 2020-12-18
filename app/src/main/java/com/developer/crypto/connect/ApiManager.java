@@ -15,21 +15,16 @@ public class ApiManager {
 
     private RetrofitRestApi mRetrofitRestApi;
 
-    public ApiManager() {
-    }
-
     @Inject
     public ApiManager(RetrofitRestApi mRetrofitRestApi) {
         this.mRetrofitRestApi = mRetrofitRestApi;
     }
-
 
     public Observable<Response<ResponseBody<List<AssetObject>>>> getAssets(long page) {
         return mRetrofitRestApi.getAssets(page)
                 .subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread());
     }
-
 
     public Observable<Response<ResponseBody<TimeSeriesResponse>>> getTimeSeries(String assetKey,String end, String beg) {
         return mRetrofitRestApi.getTimeSeries(assetKey,beg,end)
