@@ -191,8 +191,6 @@ public class AssetDetailsFragment extends BasicFragment implements AssetDetailsF
         XAxis xAxis = binding.lineChart.getXAxis();
         xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
         xAxis.setValueFormatter(new IndexAxisValueFormatter(getDate(data.getValues())));
-
-
     }
 
     private ArrayList<String> getDate(List<List<Float>> values) {

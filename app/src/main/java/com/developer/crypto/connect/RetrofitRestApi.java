@@ -14,22 +14,10 @@ import retrofit2.http.Query;
 
 public interface RetrofitRestApi {
 
-
-    @Headers({
-            "Content-Type: application/json",
-            "Accept: application/json"
-    })
     @GET("v2/assets")
     Observable<Response<ResponseBody<List<AssetObject>>>> getAssets(@Query("page") long page);
 
-
-    @Headers({
-            "Content-Type: application/json",
-            "Accept: application/json"
-    })
     @GET("v1/assets/{assetKey}/metrics/price/time-series")
     Observable<Response<ResponseBody<TimeSeriesResponse>>> getTimeSeries(@Path("assetKey") String assetKey,@Query("beg") String beg,@Query("end") String end);
-
-
 
 }
